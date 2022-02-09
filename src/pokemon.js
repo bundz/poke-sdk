@@ -1,5 +1,6 @@
 const axios = require('axios');
 const Ability = require('./ability');
+const Nature = require('./nature');
 
 class Pokemon {
   constructor(pokemonData) {
@@ -8,9 +9,13 @@ class Pokemon {
     }
   }
 
-  async getAbility(index) {
-    const abilityData = this.abilities[index];
-    const { data: ability } = await axios.get(abilityData.ability.url);
+  static async getNature(index) {
+    const { data: natureData } = await axios.get(`https://pokeapi.co/api/v2/nature/${index}`);
+    return new Nature(natureData);
+  }
+
+  static async getAbility(index) {
+    const { data: ability } = await axios.get(`https://pokeapi.co/api/v2/ability/${index}`);
     return new Ability(ability);
   }
 
