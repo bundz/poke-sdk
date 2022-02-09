@@ -32,6 +32,13 @@ class Items {
     return new Item(itemPockets);
   }
 
+  static async getCompletedById(id) {
+    //Pega o item
+    //pega as categorias
+    //pega o resto
+    //
+  }
+
 }
 
 module.exports = Items;

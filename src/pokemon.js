@@ -9,7 +9,6 @@ class Pokemon {
     }
   }
 
-  
   static async getNature(index) {
     const { data: natureData } = await axios.get(`https://pokeapi.co/api/v2/nature/${index}`);
     return new Nature(natureData);
@@ -23,6 +22,13 @@ class Pokemon {
   static async getById(id) {
     const { data: pokemon } = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
     return new Pokemon(pokemon);
+  }
+
+  static async getCompletedById(id) {
+    //Busca o pokemon
+    //pra cada ability busca a ability
+    //pra cada nature busca a nature
+    //{ abilties:  }
   }
 }
 
