@@ -9,6 +9,7 @@ class Pokemon {
     }
   }
 
+  
   static async getNature(index) {
     const { data: natureData } = await axios.get(`https://pokeapi.co/api/v2/nature/${index}`);
     return new Nature(natureData);
