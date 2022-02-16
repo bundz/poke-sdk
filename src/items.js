@@ -1,5 +1,9 @@
 const axios = require('axios');
 const Item = require('./item');
+const ItemAttributes = require('./itemAttributes');
+const ItemCategories = require('./itemCategories');
+const ItemFlingEffects = require('./itemFlingEffects');
+const ItemPockets = require('./itemPockets');
 
 class Items {
   constructor(itemsData) {
@@ -12,24 +16,28 @@ class Items {
     return new Item(item);
   }
 
-  static async getItemAttributes(id){
-    const { data: itemAttributes } = await axios.get(`https://pokeapi.co/api/v2/item-attribute/${id}`);
-    return new Item(itemAttributes);
+  async getItemAttributes(index){
+    const itemAttributesData = this.itemAttributes[index];
+    const { data: itemAttributes } = await axios.get(itemAttributesData.itemAttributes.url);
+    return new ItemAttributes(itemAttributes);
   }
 
-  static async getItemCategories(id){
-    const { data: itemCategories } = await axios.get(`https://pokeapi.co/api/v2/item-category//${id}`);
-    return new Item(itemCategories);
+  async getItemCategories(index){
+    const itemCategoriesData = this.itemCategories[index];
+    const { data: itemCategories } = await axios.get(itemCategoriesData.itemCategories.url);
+    return new ItemCategories(itemCategories);
   }
 
-  static async getItemFlingEffects(id){
-    const { data: itemFlingEffects } = await axios.get(`https://pokeapi.co/api/v2/item-fling-effect/${id}`);
-    return new Item(itemFlingEffects);
+  async getItemFlingEffects(index){
+    const itemFlingEffectsData = this.itemFlingEffects[index];
+    const { data: itemFlingEffects } = await axios.get(itemFlingEffectsData.itemFlingEffects.url);
+    return new ItemFlingEffects(itemFlingEffects);
   }
 
-  static async getItemPockets(id){
-    const { data: itemPockets } = await axios.get(`https://pokeapi.co/api/v2/item-pocket/${id}`);
-    return new Item(itemPockets);
+  async getItemPockets(index){
+    const itemPocketsData = this.itemPockets[index];
+    const { data: itemPockets } = await axios.get(itemPocketsData.itemPockets.url);
+    return new ItemPockets(itemPockets);
   }
 
   static async getCompletedById(id) {
